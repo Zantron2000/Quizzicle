@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm, SetPasswordForm
 from django.contrib.auth.models import User
 
 from django import forms
@@ -16,6 +16,19 @@ class NewUserForm(UserCreationForm):
             visible.field.widget.attrs['class'] = 'input'
             visible.field.widget.attrs['id'] = visible.name
 
+class UserPasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super(UserPasswordResetForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'input'
+            visible.field.widget.attrs['id'] = visible.name
+
+class UserSetPasswordForm(SetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super(UserSetPasswordForm, self).__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs['class'] = 'input'
+            visible.field.widget.attrs['id'] = visible.name
 class LoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)

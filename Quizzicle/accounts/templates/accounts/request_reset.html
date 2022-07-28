@@ -4,9 +4,9 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'accounts/css/verify.css' %}">
+        <link rel="stylesheet" href="{% static 'accounts/css/request_reset.css' %}">
 
-        <title>Verify Email | StudyBee</title>
+        <title>Request Password Reset | StudyBee</title>
     </head>
     <body>
         <nav>
@@ -19,13 +19,18 @@
 
             <div class="right">
                 <p>Search</p>
+                {% if request.user.is_authenticated %}
                 <a href="{% url 'logout' %}"><p class="logout">Log out</p></a>
+                {% else %}
+                <a href="{% url 'login' %}"><p class="login">Log in</p></a>
+                <a href="{% url 'register' %}"><p class="register">Sign up</p></a>
+                {% endif %}
             </div>
         </nav>
         <main>
             <div class="content">
-                <h1>Verify Email</h1>
-                <p>The code is valid for the next 30 minutes</p>
+                <h1>Reset Request</h1>
+                <p>Enter your email below</p>
 
                 <form method="post" action="">
                     {% csrf_token %}
@@ -34,14 +39,6 @@
                         <div class="item">
                             {{ field }}
                         </div>
-                        
-                        {% if code and field.name == 'code' %}
-                            <ul>
-                                {% for error in code %}
-                                    <li>{{error}}</li>
-                                {% endfor %}
-                            </ul>
-                        {% endif %}
                     {% endfor %}
 
                     <input class="submit" type="submit">
@@ -56,12 +53,6 @@
                 </div>
 
                 <hr>
-                <form class="link" method="post" action="{% url 'resend_verify' %}">
-                    <p class="info">Didn't recieve it? </p>
-                    {% csrf_token %}
-                    <input class="repeat" type="submit" value="Send again">
-                </form>
-
             </div>
         </main>
     </body>

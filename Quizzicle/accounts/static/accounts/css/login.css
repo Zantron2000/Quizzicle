@@ -116,3 +116,23 @@ nav a {
     font-size: 1.2rem;
     font-weight: 700;
 }
+
+.link {
+    display: flex;
+    justify-content: center;
+    color: darkgrey;
+    margin-top: 1vh;
+}
+
+.link p {
+    background-color: white;
+    padding: 10px 25px;
+    border: 2px darkgrey solid;
+    border-radius: 3px;
+}
+
+.link a {
+    color: #3ccfcf;
+    text-decoration: none;
+    font-size: 1.2rem;
+}

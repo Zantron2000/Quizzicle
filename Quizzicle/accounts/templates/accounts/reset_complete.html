@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'accounts/css/reset_complete.css' %}">
+
+        <title>Reset Complete | StudyBee</title>
+    </head>
+    <body>
+        <nav>
+            <div class="left">
+                <a href=""><p class="logo">StudyBee</p></a>
+                <a href=""><p class="nav-link">Home</p></a>
+                <a href=""><p class="nav-link">Subjects</p></a>
+                <a href=""><p class="nav-link">Create</p></a>
+            </div>
+
+            <div class="right">
+                <p>Search</p>
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}"><p class="logout">Log out</p></a>
+                {% else %}
+                <a href="{% url 'login' %}"><p class="login">Log in</p></a>
+                <a href="{% url 'register' %}"><p class="register">Sign up</p></a>
+                {% endif %}
+            </div>
+        </nav>
+        <main>
+            <div class="content">
+                <div>
+                    <h1>Password reset complete</h1>
+                    <p>Your password has been set. You may go ahead and log in.</p>
+                </div>
+                <div class="submit">
+                    <a class="submits" href="{% url 'login' %}">Log in</a>
+                </div>
+                <hr>
+            </div>
+        </main>
+    </body>
+</html>
