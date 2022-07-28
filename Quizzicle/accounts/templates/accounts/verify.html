@@ -23,7 +23,46 @@
             </div>
         </nav>
         <main>
-            
+            <div class="content">
+                <h1>Verify Email</h1>
+                <p>The code is valid for the next 30 minutes</p>
+
+                <form method="post" action="">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        <div class="item">
+                            {{ field }}
+                        </div>
+                        
+                        {% if code and field.name == 'code' %}
+                            <ul>
+                                {% for error in code %}
+                                    <li>{{error}}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endfor %}
+
+                    <input class="submit" type="submit">
+                </form>
+
+                <div class="messages" {% if not messages %}hidden{% endif %}>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="message">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <hr>
+                <form class="link" method="post" action="{% url 'resend_verify' %}">
+                    <p class="info">Didn't recieve it? </p>
+                    {% csrf_token %}
+                    <input class="repeat" type="submit" value="Send again">
+                </form>
+
+            </div>
         </main>
     </body>
 </html>

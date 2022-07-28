@@ -25,3 +25,6 @@ class LoginForm(forms.Form):
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'input'
             visible.field.widget.attrs['id'] = visible.name
+
+class ValidationForm(forms.Form):
+    code = forms.CharField(widget=forms.TextInput(attrs={'placeholder':'Enter code here...', "class": 'input'}))

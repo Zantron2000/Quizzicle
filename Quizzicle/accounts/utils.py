@@ -2,7 +2,15 @@ from django.http import HttpRequest
 
 from django.contrib.auth.models import Group
 
+from django.template.loader import render_to_string
+
+from django.conf import settings
+
+from django.core.mail import EmailMultiAlternatives
+
 from django.shortcuts import redirect
+
+from accounts.models import UserValidation
 
 def group_required(group_name, redirect_url):
     def inner_function(func):
@@ -52,3 +60,21 @@ def process_form_errors(errorsDict, contextDict, placeholders={}):
                 issues.append(problem.message)
 
         contextDict[key] = issues
+
+def get_validation(user):
+    try:
+        return UserValidation.objects.get(user=user)
+    except:
+        return None
+
+def send_verify_email(request: HttpRequest, validation: UserValidation):
+    subject = "Subject"
+    message = "Hi there, " + request.user.username + "\nYour code is: " + validation.code
+    email_from = settings.EMAIL_HOST_USER
+    recipent_list = [request.user.email]
+    #template = render_to_string("core/verifyemail.html", {"code": validation.code})
+
+    email = EmailMultiAlternatives(subject=subject, body=message, from_email=email_from, to=recipent_list)
+    #email.attach_alternative(template, "text/html")
+
+    return email.send()

@@ -54,3 +54,86 @@ nav {
     border-bottom: 3px #3b4c9b solid;
     text-decoration: none;
 }
+
+main {
+    background-color: #3b4c9b;
+    width: 80vw;
+    height: 80vh;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    padding-top: 15vh;
+    color: white;
+}
+
+
+.submit {
+    background-color: #3ccfcf;
+    color: white;
+    width: 15vw;
+    border: 5px #3ccfcf solid;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    margin-left: 5px;
+    cursor: pointer;
+    margin-top: 1vh;
+}
+
+
+.submit:hover {
+    background-color: #28a7a7;
+    border: 5px #28a7a7 solid;
+}
+
+.form {
+    padding-top: 16vh;
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+    display: block;
+    border: 3px black solid;
+    width: 15vw;
+    height: 3vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    outline: none;
+    border-radius: 3px;
+}
+
+.input:active, input:focus {
+    border: 3px #ffcd1f solid;
+}
+
+.form label {
+    color: lightgray;
+}
+
+.link {
+    display: flex;
+    justify-content: center;
+    color: white;
+    margin-top: 1vh;
+}
+
+.repeat {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color:white;
+    font-size: 1rem;
+    text-decoration: underline;
+}
+
+.repeat:hover {
+    border: none;
+}
+
+.messages {
+    color: rgb(216, 69, 69);
+}

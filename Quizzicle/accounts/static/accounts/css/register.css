@@ -94,14 +94,15 @@ nav a {
     margin-top: 1vh;
 }
 
+
+.submit:hover {
+    background-color: #28a7a7;
+    border: 5px #28a7a7 solid;
+}
+
 .right hr {
     width: 50%;
     margin-top: 3vh;
-}
-
-.submit:hover {
-    background-color: #19804f;
-    border: 5px #19804f solid;
 }
 
 .link {
