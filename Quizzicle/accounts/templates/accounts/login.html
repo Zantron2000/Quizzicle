@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'accounts/css/login.css' %}">
+
+        <title>Login</title>
+    </head>
+
+    <body>
+        <div class="flex">
+            <div class="left">
+                <img class="study" src="{% static 'accounts/images/study.jpg' %}">
+                <p class="logo">Quizzicle</p>
+                <p>Insert some catch phrase here</p>
+            </div>
+            <div class="right">
+                <nav>
+                    <p><a href="{% url 'register' %}">Sign up</a></p>
+                    <p class="active"><a href="{% url 'login' %}">Log in</a></p>
+                </nav>
+                <div class="form">
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        
+                        {% for field in form %}
+                            <label for="{{field.name}}">{{field.label}}</label>
+                            {{field}}
+
+                            {% if username and field.name == 'username' %}
+                                <ul>
+                                    {% for error in username %}
+                                        <li>{{error}}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% elif password and field.name == 'password' %}
+                                <ul>
+                                    {% for error in password %}
+                                        <li>{{error}}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+                        {% endfor %}
+                        <input class="submit" type="submit" value="Sign Up">
+                    </form>
+
+                    <div class="messages" {% if not messages %}hidden{% endif %}>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p class="message">{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </body>
+</html>

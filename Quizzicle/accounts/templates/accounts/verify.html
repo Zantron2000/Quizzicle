@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'accounts/css/verify.css' %}">
+
+        <title>Verify Email | Quizzicle</title>
+    </head>
+    <body>
+        <nav>
+            <div class="left">
+                <a href=""><p class="logo">Quizzicle</p></a>
+                <a href=""><p class="nav-link active">Home</p></a>
+                <a href=""><p class="nav-link">Subjects</p></a>
+                <a href=""><p class="nav-link">Create</p></a>
+            </div>
+
+            <div class="right">
+                <p>Search</p>
+                <a href="{% url 'logout' %}"><p class="logout">Log out</p></a>
+            </div>
+        </nav>
+        <main>
+            
+        </main>
+    </body>
+</html>

@@ -1,0 +1,125 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    color: #3b4c9b
+}
+
+html {
+    font-size: 16px;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex div {
+    flex: 1;
+}
+
+.study {
+    width: 40vw;
+}
+
+.left {
+    text-align: center;
+}
+
+.logo {
+    text-align: center;
+    color: #3b4c9b;
+    font-weight: bold;
+    font-size: 3rem;
+    margin: 1vh 1vh;
+}
+
+nav {
+    margin-top: 2vh;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    font-weight: bold;
+    font-size: 2rem;
+}
+
+nav a {
+    text-decoration: none;
+    color:#3b4c9b
+}
+
+.active {
+    border-bottom: 3px #ffcd1f solid;
+}
+
+.right {
+    background-color: #3b4c9b;
+    height: 100vh;
+}
+
+.form {
+    padding-top: 16vh;
+    color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.input {
+    display: block;
+    border: 3px black solid;
+    width: 15vw;
+    height: 3vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    outline: none;
+    border-radius: 3px;
+}
+
+.input:active, input:focus {
+    border: 3px #ffcd1f solid;
+}
+
+.form label {
+    color: lightgray;
+}
+
+.submit {
+    background-color: #3ccfcf;
+    color: white;
+    width: 15vw;
+    border: 5px #3ccfcf solid;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    margin-left: 5px;
+    cursor: pointer;
+    margin-top: 1vh;
+}
+
+.right hr {
+    width: 50%;
+    margin-top: 3vh;
+}
+
+.submit:hover {
+    background-color: #19804f;
+    border: 5px #19804f solid;
+}
+
+.link {
+    display: flex;
+    justify-content: center;
+    color: darkgrey;
+    margin-top: 1vh;
+}
+
+.link p {
+    background-color: white;
+    padding: 10px 25px;
+    border: 2px darkgrey solid;
+    border-radius: 3px;
+}
+
+.link a {
+    color: #3ccfcf;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
