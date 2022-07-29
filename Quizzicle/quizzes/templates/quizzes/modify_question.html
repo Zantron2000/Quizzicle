@@ -1,0 +1,80 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'quizzes/css/modify_question.css' %}">
+
+        <title>Modify Question | StudyBee</title>
+    </head>
+    <body>
+        <nav>
+            <div class="left">
+                <a href=""><p class="logo">StudyBee</p></a>
+                <a href=""><p class="nav-link">Home</p></a>
+                <a href=""><p class="nav-link">Subjects</p></a>
+                <a href=""><p class="nav-link active">Create</p></a>
+            </div>
+
+            <div class="right">
+                <p>Search</p>
+                <a href="{% url 'logout' %}"><p class="logout">Log out</p></a>
+            </div>
+        </nav>
+        <main>
+            <div class="tools">
+                <div></div>
+                <div><h1>Modify Question</h1></div>
+                <div class="buttons">
+                    <a class="cancel" href="{% url 'modify_quiz' quiz.id %}"><p>Cancel</p></a>
+                    <a class="delete" href="{% url 'delete_question' question.id %}"><p>Delete</p></a>
+                </div>
+            </div>
+            
+            <div class="content">
+                <div class="form">
+                    <hr>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        
+                        {% for field in form %}
+                            <label for="{{field.name}}">{{field.label}}</label>
+                            {{field}}
+                        {% endfor %}
+                        <input class="submit" type="submit" value="Update Quiz">
+                    </form>
+
+                    <div class="messages" {% if not messages %}hidden{% endif %}>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p class="message">{{message}}</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div>
+                    <hr>
+                    <div class="choice_tools">
+                        <div></div>
+                        <div><h2>Choices</h2></div>
+                        <div class="create">
+                            <a href="{% url 'create_question' quiz.id %}"><p>Create Choice</p></a>
+                        </div>
+                    </div>
+                    {% for choice_form in choice_forms %}
+                        <form class="choice">
+                            {% csrf_token %}
+                            <div class="item1">{{choice_form.choice}}</div>
+                            <div class="item2"></div>
+                            <div class="item3"><input class="delete_choice" type="submit" name="delete" value="Delete"></div>
+                            <div class="item4"><label for="correct">Correct Answer</label> {{choice_form.correct}}</div>
+                            <div class="item5"></div>
+                            <div class="item6"><input class="update" type="submit" name="update" value="Update"></input></div>
+                        </form>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

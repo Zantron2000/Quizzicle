@@ -13,10 +13,10 @@ class Quiz(models.Model):
         MISC = "MC"
 
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    points = models.IntegerField(default = 1)
+    points = models.PositiveSmallIntegerField(default=1)
     subject = models.CharField(max_length=2, choices=Subject.choices)
-    specific_subject = models.CharField(max_length=100)
-    name = models.CharField(max_length=50, unique=True)
+    specific_subject = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
 
 class Question(models.Model):
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
@@ -25,4 +25,4 @@ class Question(models.Model):
 class Choice(models.Model):
     choice = models.CharField(max_length=500)
     correct = models.BooleanField()
-    quiz = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)

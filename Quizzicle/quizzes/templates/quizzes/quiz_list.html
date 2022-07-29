@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'quizzes/css/quiz_list.css' %}">
+
+        <title>All Created Quizzes | StudyBee</title>
+    </head>
+    <body>
+        <nav>
+            <div class="left">
+                <a href=""><p class="logo">StudyBee</p></a>
+                <a href=""><p class="nav-link">Home</p></a>
+                <a href=""><p class="nav-link">Subjects</p></a>
+                <a href=""><p class="nav-link active">Create</p></a>
+            </div>
+
+            <div class="right">
+                <p>Search</p>
+                <a href="{% url 'logout' %}"><p class="logout">Log out</p></a>
+            </div>
+        </nav>
+        <main>
+            <div class="tools">
+                <div></div>
+                <div><h1>Quiz List</h1></div>
+                <div class="create">
+                    <a href="{% url 'create_quiz' %}"><p>Create Quiz</p></a>
+                </div>
+            </div>
+            
+            <div class="content">
+                
+                <hr>
+
+                {% for quiz in quizzes %}
+                    <div class="quiz">
+                        <div class="item1"><p>{{quiz.name}}</p></div>
+                        <div class="item2"></div>
+                        <div class="item3"><p>Points: {{quiz.points}}</p></div>
+                        <div class="item4"><p>Subject: {{quiz.get_subject_display}}</p></div>
+                        <div class="item5"></div>
+                        <div class="item6"><p>{{quiz.specific_subject}}</p></div>
+                        <div class="item7"></div>
+                        <div class="item8"><p>Questions: {{quiz.question_set.all|length}}</p></div>
+                        <div class="item9"></div>
+                        <div class="item10"><a href="{% url 'modify_quiz' quiz.id %}"><p>Modify</p></a></div>
+                    </div>
+                {% endfor %}
+            </div>
+        </main>
+    </body>
+</html>

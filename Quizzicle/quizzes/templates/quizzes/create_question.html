@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'quizzes/css/create_question.css' %}">
+
+        <title>Create Quiz | StudyBee</title>
+    </head>
+    <body>
+        <nav>
+            <div class="left">
+                <a href=""><p class="logo">StudyBee</p></a>
+                <a href=""><p class="nav-link">Home</p></a>
+                <a href=""><p class="nav-link">Subjects</p></a>
+                <a href=""><p class="nav-link active">Create</p></a>
+            </div>
+
+            <div class="right">
+                <p>Search</p>
+                <a href="{% url 'logout' %}"><p class="logout">Log out</p></a>
+            </div>
+        </nav>
+        <main>
+            <div class="tools">
+                <div></div>
+                <div><h1>Create Question</h1></div>
+                <div class="cancel">
+                    <a href="{% url 'modify_quiz' quiz.id %}"><p>Cancel</p></a>
+                </div>
+            </div>
+            
+            <div class="content">
+                <hr>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        <label for="{{field.name}}">{{field.label}}</label>
+                        {{field}}
+                    {% endfor %}
+                    <input class="submit" type="submit" value="Create Question">
+                </form>
+
+                <div class="messages" {% if not messages %}hidden{% endif %}>
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p class="message">{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </main>
+    </body>
+</html>

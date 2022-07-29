@@ -5,7 +5,7 @@ from quizzes.models import Quiz, Question, Choice
 class NewQuizForm(forms.ModelForm):
     class Meta:
         model = Quiz
-        fields = ['points', 'subject', 'specific_subject', 'name']
+        fields = ['name', 'points', 'subject', 'specific_subject']
 
     def __init__(self, *args, **kwargs):
         super(NewQuizForm, self).__init__(*args, **kwargs)
@@ -19,7 +19,7 @@ class NewQuestionForm(forms.ModelForm):
         fields = ['question']
     
     def __init__(self, *args, **kwargs):
-        super(NewQuizForm, self).__init__(*args, **kwargs)
+        super(NewQuestionForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'input'
             visible.field.widget.attrs['id'] = visible.name
@@ -30,7 +30,7 @@ class NewChoiceForm(forms.ModelForm):
         fields = ['choice', 'correct']
 
     def __init__(self, *args, **kwargs):
-        super(NewQuizForm, self).__init__(*args, **kwargs)
+        super(NewChoiceForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():
             visible.field.widget.attrs['class'] = 'input'
             visible.field.widget.attrs['id'] = visible.name
