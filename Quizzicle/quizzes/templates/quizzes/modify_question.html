@@ -14,7 +14,7 @@
                 <a href=""><p class="logo">StudyBee</p></a>
                 <a href=""><p class="nav-link">Home</p></a>
                 <a href=""><p class="nav-link">Subjects</p></a>
-                <a href=""><p class="nav-link active">Create</p></a>
+                <a href="{% url 'view_quizzes' %}"><p class="nav-link">Create</p></a>
             </div>
 
             <div class="right">
@@ -59,11 +59,11 @@
                         <div></div>
                         <div><h2>Choices</h2></div>
                         <div class="create">
-                            <a href="{% url 'create_question' quiz.id %}"><p>Create Choice</p></a>
+                            <a href="{% url 'create_choice' question.id %}"><p>Create Choice</p></a>
                         </div>
                     </div>
-                    {% for choice_form in choice_forms %}
-                        <form class="choice">
+                    {% for choice, choice_form in choices %}
+                        <form class="choice" method="post" action="{% url 'modify_choice' choice.id %}">
                             {% csrf_token %}
                             <div class="item1">{{choice_form.choice}}</div>
                             <div class="item2"></div>

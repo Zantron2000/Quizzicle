@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from secrets import choice
+from django.shortcuts import render, redirect, get_object_or_404
 
 from django.http import HttpRequest, HttpResponse
 
@@ -42,10 +43,11 @@ def create_quiz(request: HttpRequest):
 def modify_quiz(request: HttpRequest, id: int):
     quiz: Quiz = get_quiz(id)
 
-    if(quiz.author != request.user):
-        return redirect("view_quizzes") # TODO Replace this with a error template
-    elif(quiz == None):
+    if(quiz == None):
         return redirect("view_quizzes")
+    elif(quiz.author != request.user):
+        return redirect("view_quizzes") # TODO Replace this with a error template
+    
 
     form = NewQuizForm(instance=quiz)
     questions = quiz.question_set.all()
@@ -142,7 +144,9 @@ def modify_question(request: HttpRequest, id: int):
     for choice in choices:
         choice_forms.append(NewChoiceForm(instance=choice))
 
-    context = {"form": form, "choice_forms": choice_forms, "question": question, "quiz": quiz}
+    choices_and_forms = zip(choices, choice_forms)
+
+    context = {"form": form, "choices": choices_and_forms, "question": question, "quiz": quiz}
 
     if(request.method == "POST"):
         form = NewQuestionForm(request.POST, instance=question)
@@ -156,6 +160,43 @@ def modify_question(request: HttpRequest, id: int):
 @login_required(login_url="login")
 @group_required(group_name="Verified", redirect_url="verify")
 def modify_choice(request: HttpRequest, id: int):
-    print(request.POST)
+    choice:Choice = get_object_or_404(Choice, id=id)
+    question:Question = choice.question
+    quiz:Quiz = question.quiz
 
-    return redirect("test")
+    if(request.user != quiz.author):
+        return redirect("view_quizzes") #TODO replace with error template
+
+    if(request.method == "POST"):
+        if(request.POST.get("delete", False)):
+            choice.delete()
+        elif(request.POST.get("update", False)):
+            form = NewChoiceForm(request.POST, instance=choice)
+            if(form.is_valid()):
+                form.save()
+
+    return redirect(reverse("modify_question", args=[question.id]))
+
+@login_required(login_url="login")
+@group_required(group_name="Verified", redirect_url="verify")
+def create_choice(request: HttpRequest, id: int):
+    form = NewChoiceForm()
+    question = get_object_or_404(Question, id=id)
+    quiz = question.quiz
+
+    if(quiz == None):
+        return redirect("view_quizzes") #TODO Replace with error template
+    elif(quiz.author != request.user):
+        return redirect("view_quizzes") #TODO replace with error template
+
+    if(request.method == "POST"):
+        form = NewChoiceForm(request.POST)
+        if(form.is_valid()):
+            choice = form.save(commit=False)
+            choice.question = question
+            choice.save()
+
+            return redirect(reverse("modify_question", args=[question.id]))
+
+    context = {"form": form, "question": question}
+    return render(request, "quizzes/create_choice.html", context)

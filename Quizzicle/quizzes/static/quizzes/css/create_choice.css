@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+html {
+    font-size: 16px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px lightgray solid;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.left p, .right p {
+    display: inline-block;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    color: #3b4c9b;
+    padding-bottom: 1vh;
+    font-weight: bold;
+}
+
+.right p {
+    padding: 15px 1vw;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.active {
+    border-bottom: 3px #3b4c9b solid;
+}
+
+.logout {
+    background-color: #ffcd1f;
+    border-radius: 14px;
+    font-weight: bold;
+}
+
+.logout a {
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    border-bottom: 3px #3b4c9b solid;
+    text-decoration: none;
+}
+
+main {
+    background-color: #3b4c9b;
+    width: 90vw;
+    min-height: 80vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4vh;
+}
+
+.tools {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.cancel {
+    
+    background-color: red;
+    border-radius: 10px;
+}
+
+.cancel:hover {
+    background-color: red;
+}
+
+.cancel a {
+    display: inline-block;
+    padding: .1vh .5vw;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+.content {
+    padding-top: 1vh;
+    color: white;
+}
+
+.form {
+    padding-top: 16vh;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.input {
+    display: block;
+    border: 3px black solid;
+    width: 15vw;
+    height: 3vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    outline: none;
+    border-radius: 3px;
+}
+
+.input:active, input:focus {
+    border: 3px #ffcd1f solid;
+}
+
+.form label {
+    color: lightgray;
+}
+
+.submit {
+    background-color: #3ccfcf;
+    color: white;
+    width: 15vw;
+    border: 5px #3ccfcf solid;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    margin-left: 5px;
+    cursor: pointer;
+    margin-top: 1vh;
+}
+
+.submit:hover {
+    background-color: #28a7a7;
+    border: 5px #28a7a7 solid;
+}
+
+.messages {
+    margin-top: 25px;
+    color: #be1809;
+    text-align: center;
+    border: 1px red solid;
+    background-color: white;
+    padding: 0vh 3vw;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
