@@ -1,8 +1,8 @@
-from django.urls import path
+from django.urls import path, include
 
 from quizzes import views
 
-urlpatterns = [
+create_patterns = [
     path("", views.view_created_quizzes, name="view_quizzes"),
     path("create_quiz/", views.create_quiz, name="create_quiz"),
     path("modify_quiz/<int:id>/", views.modify_quiz, name="modify_quiz"),
@@ -14,3 +14,10 @@ urlpatterns = [
 
     path("update_choice/<int:id>", views.modify_choice, name="modify_choice")
 ]
+
+urlpatterns = [
+    path("create", include(create_patterns)),
+    path("", views.get_home, name="home"),
+    path("search/", views.get_search_results, name="search")
+]
+

@@ -1,7 +1,7 @@
 from secrets import choice
 from django.shortcuts import render, redirect, get_object_or_404
 
-from django.http import HttpRequest, HttpResponse
+from django.http import HttpRequest
 
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -10,7 +10,7 @@ from django.urls import reverse
 
 from accounts.utils import group_required
 
-from quizzes.forms import NewQuizForm, NewQuestionForm, NewChoiceForm
+from quizzes.forms import NewQuizForm, NewQuestionForm, NewChoiceForm, SearchForm
 from quizzes.utils import *
 # Create your views here.
 
@@ -200,3 +200,28 @@ def create_choice(request: HttpRequest, id: int):
 
     context = {"form": form, "question": question}
     return render(request, "quizzes/create_choice.html", context)
+
+
+def get_home(request: HttpRequest):
+    return render(request, "quizzes/home.html")
+
+def get_search_results(request: HttpRequest):
+    form = SearchForm()
+    quizzes = Quiz.objects.all()
+
+    if(request.method == "GET"):
+        form = SearchForm(request.GET)
+        if(form.is_valid()):
+            search_parameters = form.cleaned_data
+            if(search_parameters.get("name", "")):
+                quizzes = quizzes.filter(name__contains=search_parameters["name"])
+            if(search_parameters.get("subject", "NA") != "NA" and search_parameters.get("subject", "NA")):
+                quizzes = quizzes.filter(subject=search_parameters["subject"])
+            if(search_parameters.get("specific_subject", "")):
+                quizzes = quizzes.filter(specific_subject__contains=search_parameters["specific_subject"])
+            if(search_parameters.get("author", "")):
+                quizzes = quizzes.filter(author__username__contains=search_parameters["author"])
+    
+    context = {"form": form, "quizzes": quizzes}
+    
+    return render(request, "quizzes/search_results.html", context)
