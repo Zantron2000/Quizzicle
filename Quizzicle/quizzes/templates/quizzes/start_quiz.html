@@ -1,0 +1,20 @@
+{% extends "quizzes/header.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'quizzes/css/start_quiz.css' %}">
+{% endblock %}
+
+{% block title %}{{quiz.name}} Quiz{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="content">
+            <p>{{quiz.name}}</p>
+            <a href="{% url 'take_quiz' quiz.id %}"><p>Start</p></a>
+            <a href="{% url 'search' %}"><p>Go back</p></a>
+
+            <p>Questions: {{quiz.valid_questions}}</p>
+        </div>
+    </main>
+{% endblock %}

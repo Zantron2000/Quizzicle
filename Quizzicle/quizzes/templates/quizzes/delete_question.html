@@ -1,44 +1,29 @@
+{% extends "quizzes/header.html" %}
 {% load static %}
 
-<!DOCTYPE html>
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'quizzes/css/delete_quiz.css' %}">
+{% endblock %}
 
-<html>
-    <head>
-        <link rel="stylesheet" href="{% static 'quizzes/css/delete_quiz.css' %}">
+{% block title %}Delete Question | StudyBee{% endblock %}
 
-        <title>Delete Question | StudyBee</title>
-    </head>
-    <body>
-        <nav>
-            <div class="left">
-                <a href=""><p class="logo">StudyBee</p></a>
-                <a href=""><p class="nav-link">Home</p></a>
-                <a href=""><p class="nav-link">Subjects</p></a>
-                <a href="{% url 'view_quizzes' %}"><p class="nav-link">Create</p></a>
+{% block content %}
+    <main>
+        <div class="tools">
+            <div></div>
+            <div><h1>Delete Question</h1></div>
+            <div class="cancel">
+                <a href="{% url 'modify_quiz' quiz.id %}"><p>Cancel</p></a>
             </div>
-
-            <div class="right">
-                <p>Search</p>
-                <a href="{% url 'logout' %}"><p class="logout">Log out</p></a>
-            </div>
-        </nav>
-        <main>
-            <div class="tools">
-                <div></div>
-                <div><h1>Delete Question</h1></div>
-                <div class="cancel">
-                    <a href="{% url 'modify_quiz' quiz.id %}"><p>Cancel</p></a>
-                </div>
-            </div>
-            
-            <div class="content">
-                <hr>
-                <h2>Are you sure you want to delete: {{question.question}}</h2>
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <input class="submit" type="submit" value="Delete Question">
-                </form>
-            </div>
-        </main>
-    </body>
-</html>
+        </div>
+        
+        <div class="content">
+            <hr>
+            <h2>Are you sure you want to delete: {{question.question}}</h2>
+            <form action="" method="post">
+                {% csrf_token %}
+                <input class="submit" type="submit" value="Delete Question">
+            </form>
+        </div>
+    </main>
+{% endblock %}

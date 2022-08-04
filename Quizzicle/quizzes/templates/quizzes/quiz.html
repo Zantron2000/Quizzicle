@@ -1,0 +1,29 @@
+{% extends "quizzes/header.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'quizzes/css/quiz_list.css' %}">
+{% endblock %}
+
+{% block title %}{{quiz.name}} | StudyBee{% endblock %}
+    
+{% block content %}
+    <main>
+        <div class="content">
+            <form action="{% url 'results' quiz.id %}" method="post">
+                {% csrf_token %}
+
+                {% for question, choices in questions_and_choices %}
+                    <p>{{question.question}}</p>
+                    {% for choice in choices %}
+                        <input type="radio" name="{{question.id}}" id="{{choice.id}}" value="{{choice.id}}" required>
+                        <label for="{{choice.id}}">{{choice.choice}}</label>
+                    {% endfor %}
+                    <br>
+                {% endfor %}
+
+                <input type="submit">
+            </form>
+        </div>
+    </main>
+{% endblock %}

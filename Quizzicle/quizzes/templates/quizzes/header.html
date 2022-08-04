@@ -1,0 +1,37 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}Template Page{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'quizzes/css/header.css' %}">
+        
+        {% block styles %}
+        {% endblock %}
+    </head>
+    <body>
+        <nav>
+            <div class="left">
+                <a href="{% url 'home' %}"><p class="logo">StudyBee</p></a>
+                <a href="{% url 'home' %}"><p class="nav-link">Home</p></a>
+                <a href=""><p class="nav-link">Subjects</p></a>
+                <a href="{% url 'view_quizzes' %}"><p class="nav-link">Create</p></a>
+            </div>
+
+            <div class="right">
+                <form class="search" action="{% url 'search' %}" method="get">
+                    {{search_form.name}}
+                </form>
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'logout' %}"><p class="logout">Log out</p></a>
+                {% else %}
+                <a href="{% url 'login' %}"><p class="login">Log in</p></a>
+                <a href="{% url 'register' %}"><p class="register">Sign up</p></a>
+                {% endif %}
+            </div>
+        </nav>
+
+        {% block content %}{% endblock %}
+
+    </body>
+</html>

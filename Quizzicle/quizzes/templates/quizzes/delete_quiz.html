@@ -1,27 +1,13 @@
+{% extends "quizzes/header.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-
-<html>
-    <head>
+{% block styles %}
         <link rel="stylesheet" href="{% static 'quizzes/css/delete_quiz.css' %}">
+{% endblock %}
 
-        <title>Delete Quiz | StudyBee</title>
-    </head>
-    <body>
-        <nav>
-            <div class="left">
-                <a href=""><p class="logo">StudyBee</p></a>
-                <a href=""><p class="nav-link">Home</p></a>
-                <a href=""><p class="nav-link">Subjects</p></a>
-                <a href="{% url 'view_quizzes' %}"><p class="nav-link">Create</p></a>
-            </div>
+{% block title %}Delete Quiz | StudyBee{% endblock %}
 
-            <div class="right">
-                <p>Search</p>
-                <a href="{% url 'logout' %}"><p class="logout">Log out</p></a>
-            </div>
-        </nav>
+{% block content %}
         <main>
             <div class="tools">
                 <div></div>
@@ -40,5 +26,4 @@
                 </form>
             </div>
         </main>
-    </body>
-</html>
+{% endblock %}

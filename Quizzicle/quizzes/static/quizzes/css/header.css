@@ -1,0 +1,96 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+html {
+    font-size: 16px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px lightgray solid;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+.nav-link:hover {
+    border-bottom: 3px #3b4c9b solid;
+    text-decoration: none;
+}
+
+.left p, .right p {
+    display: inline-block;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    color: #3b4c9b;
+    padding-bottom: 1vh;
+    font-weight: bold;
+}
+
+.right {
+    display: flex;
+    justify-content: center;
+}
+
+.right p {
+    padding: 15px 1vw;
+    margin-left: 10px;
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.nav-link:hover {
+    border-bottom: 3px #3b4c9b solid;
+    text-decoration: none;
+}
+
+.search {
+    padding-top: 1vh;
+}
+
+.logout {
+    background-color: #ffcd1f;
+    border-radius: 14px;
+    font-weight: bold;
+}
+
+.logout a {
+    text-decoration: none;
+}
+
+.login:hover {
+    background-color: lightgrey;
+    border-radius: 10px;
+}
+
+.register {
+    background-color: #ffcd1f;
+    border-radius: 10px;
+}
+
+.register:hover {
+    background-color: #fddb5e;
+}
+
+.mini-search {
+    display: block;
+    border: 3px black solid;
+    width: 15vw;
+    height: 3vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    outline: none;
+    border-radius: 3px;
+}
+
+.mini-search:active, .mini-search:focus {
+    border: 3px #ffcd1f solid;
+}

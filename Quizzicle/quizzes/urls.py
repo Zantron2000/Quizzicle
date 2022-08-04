@@ -18,6 +18,9 @@ create_patterns = [
 urlpatterns = [
     path("create", include(create_patterns)),
     path("", views.get_home, name="home"),
-    path("search/", views.get_search_results, name="search")
+    path("search/", views.get_search_results, name="search"),
+    path("quizzes/prepare_quiz/<int:id>", views.prepare_quiz, name="prepare_quiz"),
+    path("quizzes/take_quiz/<int:id>", views.take_quiz, name="take_quiz"),
+    path("quizzes/results/<int:id>", views.get_results, name="results")
 ]
 

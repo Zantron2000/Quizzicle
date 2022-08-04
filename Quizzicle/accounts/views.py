@@ -12,7 +12,7 @@ from accounts.forms import NewUserForm, LoginForm, ValidationForm
 
 # Create your views here.
 
-@logout_required(redirect_url="test")
+@logout_required(redirect_url="home")
 def register_user(request: HttpRequest):
     form = NewUserForm()
     context = {"form": form}
@@ -26,14 +26,14 @@ def register_user(request: HttpRequest):
             if(user is not None):
                 login(request, user)
                 
-                return redirect("test")
+                return redirect("home")
         else:
             placeholders = {"min_length": 9, "model_name": "User", "field_label": "email"}
             process_form_errors(form.errors.as_data(), context, placeholders)
 
     return render(request, "accounts/register.html", context)
 
-@logout_required(redirect_url="test")
+@logout_required(redirect_url="home")
 def login_user(request: HttpRequest):
     form = LoginForm()
     context = {"form": form}
@@ -46,7 +46,7 @@ def login_user(request: HttpRequest):
             if(user is not None):
                 login(request, user)
 
-                return redirect("test")
+                return redirect("home")
             else:
                 messages.error(request, "User not found")
         else:
@@ -61,7 +61,7 @@ def logout_user(request: HttpRequest):
     return redirect("login")
 
 @login_required(login_url="login")
-@group_unrequired(group_name="Verified", redirect_url="test")
+@group_unrequired(group_name="Verified", redirect_url="home")
 def verify_user(request: HttpRequest):
     form = ValidationForm()
     context = {"form": form}
@@ -99,7 +99,7 @@ def verify_user(request: HttpRequest):
     return render(request, "accounts/verify.html", context)
 
 @login_required(login_url="login")
-@group_unrequired(group_name="Verified", redirect_url="test")
+@group_unrequired(group_name="Verified", redirect_url="home")
 def resend_verification(request: HttpRequest):
     if(request.method == "POST"):
         validation: UserValidation = get_validation(request.user)

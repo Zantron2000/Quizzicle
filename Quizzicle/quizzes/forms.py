@@ -50,6 +50,10 @@ class SearchForm(forms.Form):
     specific_subject = forms.CharField(max_length=50, required=False)
     author = forms.CharField(max_length=100, required=False)
 
+    def make_mini_form(self):
+        self.fields["name"].widget.attrs['placeholder'] = "Search by name..."
+        self.fields["name"].widget.attrs['class'] = "mini-search"
+
     def __init__(self, *args, **kwargs):
         super(SearchForm, self).__init__(*args, **kwargs)
         for visible in self.visible_fields():

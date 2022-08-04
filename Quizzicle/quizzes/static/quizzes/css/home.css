@@ -1,58 +1,5 @@
-body {
-    margin: 0;
-    padding: 0;
-    font-family: sans-serif;
-}
-
-html {
-    font-size: 16px;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    border-bottom: 1px lightgray solid;
-    padding-left: 1vw;
-    padding-right: 1vw;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-
-.left p, .right p {
-    display: inline-block;
-    padding-left: 1vw;
-    padding-right: 1vw;
-    color: #3b4c9b;
-    padding-bottom: 1vh;
-    font-weight: bold;
-}
-
-.right p {
-    padding: 15px 1vw;
-}
-
-.logo {
-    font-weight: bold;
-    font-size: 1.5rem;
-}
-
 .active {
     border-bottom: 3px #3b4c9b solid;
-}
-
-.logout {
-    background-color: #ffcd1f;
-    border-radius: 14px;
-    font-weight: bold;
-}
-
-.logout a {
-    text-decoration: none;
-}
-
-.nav-link:hover {
-    border-bottom: 3px #3b4c9b solid;
-    text-decoration: none;
 }
 
 main {
@@ -63,20 +10,6 @@ main {
     justify-content: center;
     background: #211e76 url(/static/quizzes/images/logo.jpg) center 41% no-repeat fixed;
     background-size: 48%;
-}
-
-.login:hover {
-    background-color: lightgrey;
-    border-radius: 10px;
-}
-
-.register {
-    background-color: #ffcd1f;
-    border-radius: 10px;
-}
-
-.register:hover {
-    background-color: #fddb5e;
 }
 
 .content {

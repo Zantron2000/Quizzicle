@@ -1,0 +1,35 @@
+{% extends "quizzes/header.html" %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'quizzes/css/quiz_results.css' %}">
+{% endblock %}
+
+{% block title %}Results | StudyBee{% endblock %}
+
+{% block content %}
+    <main>
+        <div>
+            <p>{{quiz.name}} | Scores</p>
+            <a href="{% url 'prepare_quiz' quiz.id %}"><p>Retake</p></a>
+            <a href="{% url 'search' %}"><p>Go to List</p></a>
+        </div>
+
+        {% if scores|length > 0 %}
+            {% for score in scores %}
+                <div>
+                    <p>{{score.score}}%</p>
+                    <p>{{score.time}}</p>
+                </div>
+            {% endfor %}
+        {% elif temp_score is not None %}
+            <div>
+                <p>{{temp_score}}%</p>
+            </div>
+        {% else %}
+            <div>
+                <p>Scores have been lost, log in to save progress</p>
+            </div>
+        {% endif %}        
+    </main>
+{% endblock %}
